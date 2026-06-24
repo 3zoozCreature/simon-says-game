@@ -1,0 +1,46 @@
+Simon says game
+
+variables
+-------------
+colors array - the colors that will be shown
+
+computerPattern or gameSequence - to save the computer output that the user needs to match
+
+user input or user sequence - to see if it matches the computer output to advance or lose
+
+level - tracks the levels
+
+gameStarted - to check if the game is started
+
+-------------
+
+functions
+-------------
+startGame - function to start the game
+
+nextLevel - function to proceed to the next level
+
+handleUserClick - stores user click input
+
+checkAnswer - compares the user input with the computer game sequence
+
+gameOver - display the losing message and restarts the game
+
+highest score - display the top score reached in this current load (EXTRA)
+
+-------------
+
+User Stories
+-------------
+
+As a user I want to press start to begin the game
+
+As a user I want to see the colors pattern so I can memorize it
+
+As a user I want to click the panels or colors in the same order
+
+As a user I want to know which level I am on and what level I reached
+
+As a user I want to see a game over message if I make a mistake
+
+As a user I want to restart after losing the game
