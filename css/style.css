@@ -6,6 +6,7 @@
     border: none;
     border-radius: 15px;
     cursor: pointer;
+    transition: box-shadow 0.2s ease, transform 0.1s ease;
 }
 
 .game-board {
@@ -23,25 +24,47 @@ body {
     align-items: center;
     background-color: gray;
 }
+
 #start-btn {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
 }
+
 #red {
     border-top-left-radius: 75%;
     border-bottom-right-radius: 20;
     background-color: rgb(199, 21, 21);
 }
+
 #green {
     border-bottom-left-radius: 75%;
     background-color: rgb(17, 162, 17);
 }
+
 #blue {
     border-top-right-radius: 75%;
     background-color: rgb(28, 28, 164);
 }
+
 #yellow {
     border-bottom-right-radius: 75%;
     background-color: rgb(202, 202, 28);
+}
+
+#restart-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.color-btn:active {
+  box-shadow: 0 0 15px 5px #3498db;
+  transform: scale(0.98);
+  filter: brightness(180%);
+}
+
+.active {
+    transform: scale(0.95);
+    filter: brightness(180%);
 }
