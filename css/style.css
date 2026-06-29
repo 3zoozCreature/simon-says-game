@@ -1,0 +1,47 @@
+.color-btn {
+    width: 150px;
+    height: 150px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.game-board {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    width: 320px;
+    margin: 20px 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: gray;
+}
+#start-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+#red {
+    border-top-left-radius: 75%;
+    border-bottom-right-radius: 20;
+    background-color: rgb(199, 21, 21);
+}
+#green {
+    border-bottom-left-radius: 75%;
+    background-color: rgb(17, 162, 17);
+}
+#blue {
+    border-top-right-radius: 75%;
+    background-color: rgb(28, 28, 164);
+}
+#yellow {
+    border-bottom-right-radius: 75%;
+    background-color: rgb(202, 202, 28);
+}
