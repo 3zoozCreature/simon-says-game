@@ -1,38 +1,63 @@
+/*-------------------------------- Constants --------------------------------*/
 const colorArr = ['red', 'blue', 'green', 'yellow']
 
+/*-------------------------------- Variables --------------------------------*/
 let gameSequence = []
+
 let playerSequence = []
+
 let level = 0
+
 let gameStarted = false
+
 let playerTurn = false
+
 let timeouts = []
 
+/*------------------------ Cached Element References ------------------------*/
 const startBtn = document.querySelector('#start-btn')
+
 const restartBtn = document.querySelector('#restart-btn')
+
 const colorBtns = document.querySelectorAll('.color-btn')
+
 const message = document.querySelector('#message')
 
+/*----------------------------- Event Listeners -----------------------------*/
 startBtn.addEventListener('click', startGame)
+
 restartBtn.addEventListener('click', restartGame)
 
 colorBtns.forEach(function (button) {
+
     button.addEventListener("click", handleUserClick)
 })
 
+/*-------------------------------- Functions --------------------------------*/
 function init() {
-    timeouts.forEach(function(timeout) {
+
+    timeouts.forEach(function (timeout) {
         clearTimeout(timeout)
+
     })
 
     timeouts = []
 
     gameSequence = []
+
     playerSequence = []
+
     level = 0
+
     gameStarted = false
+
     playerTurn = false
+    
     message.textContent = 'Press Start to Play'
+
 }
+
+
 
 function startGame() {
     if (gameStarted) {
@@ -43,9 +68,13 @@ function startGame() {
     nextRound()
 }
 
+
+
 function restartGame() {
     init()
 }
+
+
 
 function nextRound() {
     playerSequence = []
@@ -72,6 +101,8 @@ function nextRound() {
     playSequence()
 }
 
+
+
 function playSequence() {
     playerTurn = false
 
@@ -92,6 +123,8 @@ function playSequence() {
     timeouts.push(turnTimeout)
 }
 
+
+
 function lightUp(button) {
     button.classList.add('active')
 
@@ -101,6 +134,8 @@ function lightUp(button) {
 
     timeouts.push(timeout)
 }
+
+
 
 function handleUserClick(event) {
     if (playerTurn === false) {
