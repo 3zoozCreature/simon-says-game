@@ -5,6 +5,7 @@ let playerSequence = []
 let level = 0
 let gameStarted = false
 let playerTurn = false
+let timeouts = []
 
 const startBtn = document.querySelector('#start-btn')
 const restartBtn = document.querySelector('#restart-btn')
@@ -13,11 +14,18 @@ const message = document.querySelector('#message')
 
 startBtn.addEventListener('click', startGame)
 restartBtn.addEventListener('click', restartGame)
+
 colorBtns.forEach(function (button) {
     button.addEventListener("click", handleUserClick)
 })
 
 function init() {
+    timeouts.forEach(function(timeout) {
+        clearTimeout(timeout)
+    })
+
+    timeouts = []
+
     gameSequence = []
     playerSequence = []
     level = 0
@@ -68,24 +76,30 @@ function playSequence() {
     playerTurn = false
 
     gameSequence.forEach(function (color, index) {
-        setTimeout(function () {
+        const timeout = setTimeout(function () {
             const button = document.querySelector('#' + color)
             lightUp(button)
         }, index * 700)
+
+        timeouts.push(timeout)
     })
 
-    setTimeout(function () {
+    const turnTimeout = setTimeout(function () {
         playerTurn = true
         message.textContent = 'Your Turn'
     }, gameSequence.length * 700)
+
+    timeouts.push(turnTimeout)
 }
 
 function lightUp(button) {
     button.classList.add('active')
 
-    setTimeout(function () {
+    const timeout = setTimeout(function () {
         button.classList.remove('active')
     }, 300)
+
+    timeouts.push(timeout)
 }
 
 function handleUserClick(event) {
@@ -111,9 +125,11 @@ function handleUserClick(event) {
         playerTurn = false
         message.textContent = "Correct!"
 
-        setTimeout(function () {
+        const timeout = setTimeout(function () {
             nextRound()
         }, 1000)
+
+        timeouts.push(timeout)
     }
 }
 
