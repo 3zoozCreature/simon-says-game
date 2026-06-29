@@ -2,31 +2,39 @@ Simon says game
 
 variables
 -------------
-colors array - the colors that will be shown
+Create a panel with a display for level and light buttons
 
-computerPattern or gameSequence - to save the computer output that the user needs to match
+create start game button
 
-user input or user sequence - to see if it matches the computer output to advance or lose
+Create an array containing the available colors
 
-level - tracks the levels
+Create an empty array to store the computer's sequence
 
-gameStarted - to check if the game is started
+Create an empty array to store the player's sequence
+
+Set the starting level to 1
+
+Set the game as not started
+
+create restart button
 
 -------------
 
 functions
 -------------
-startGame - function to start the game
+repeat while the game has not ended
 
-nextLevel - function to proceed to the next level
+add a random color to the computer sequence
 
-handleUserClick - stores user click input
+display the full computer sequence to the player to memorize in order
 
-checkAnswer - compares the user input with the computer game sequence
+clear the player sequence to display next level
 
-gameOver - display the losing message and restarts the game
+after each click compare the player's input with the computer's sequence
 
-highest score - display the top score reached in this current load (EXTRA)
+if clicked incorrect color display a game over message and restart button
+
+if the player clicks the entire sequence correctly, increase the level and increase the sequence length
 
 -------------
 
