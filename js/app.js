@@ -13,6 +13,9 @@ const message = document.querySelector('#message')
 
 startBtn.addEventListener('click', startGame)
 restartBtn.addEventListener('click', restartGame)
+colorBtns.forEach(function (button) {
+    button.addEventListener("click", handleUserClick)
+})
 
 function init() {
     gameSequence = []
@@ -64,14 +67,14 @@ function nextRound() {
 function playSequence() {
     playerTurn = false
 
-    gameSequence.forEach(function(color, index) {
-        setTimeout(function() {
+    gameSequence.forEach(function (color, index) {
+        setTimeout(function () {
             const button = document.querySelector('#' + color)
             lightUp(button)
         }, index * 700)
     })
 
-    setTimeout(function() {
+    setTimeout(function () {
         playerTurn = true
         message.textContent = 'Your Turn'
     }, gameSequence.length * 700)
@@ -80,9 +83,38 @@ function playSequence() {
 function lightUp(button) {
     button.classList.add('active')
 
-    setTimeout(function() {
+    setTimeout(function () {
         button.classList.remove('active')
     }, 300)
+}
+
+function handleUserClick(event) {
+    if (playerTurn === false) {
+        return
+    }
+
+    const clickedColor = event.target.id
+    playerSequence.push(clickedColor)
+
+    lightUp(event.target)
+
+    const currentIndex = playerSequence.length - 1
+
+    if (playerSequence[currentIndex] !== gameSequence[currentIndex]) {
+        message.textContent = "Game Over"
+        gameStarted = false
+        playerTurn = false
+        return
+    }
+
+    if (playerSequence.length === gameSequence.length) {
+        playerTurn = false
+        message.textContent = "Correct!"
+
+        setTimeout(function () {
+            nextRound()
+        }, 1000)
+    }
 }
 
 init()
