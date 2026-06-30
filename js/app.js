@@ -2,12 +2,12 @@
 const colorArr = ['red', 'blue', 'green', 'yellow']
 
 const gameSounds = {
-  green: new Audio("https://s3.amazonaws.com/freecodecamp/simonSound1.mp3"),
-  red: new Audio("https://s3.amazonaws.com/freecodecamp/simonSound2.mp3"),
-  blue: new Audio("https://s3.amazonaws.com/freecodecamp/simonSound3.mp3"),
-  yellow: new Audio("https://s3.amazonaws.com/freecodecamp/simonSound4.mp3"),
-  error: new Audio("https://google.com") 
-};
+    green: new Audio("https://s3.amazonaws.com/freecodecamp/simonSound1.mp3"),
+    red: new Audio("https://s3.amazonaws.com/freecodecamp/simonSound2.mp3"),
+    blue: new Audio("https://s3.amazonaws.com/freecodecamp/simonSound3.mp3"),
+    yellow: new Audio("https://s3.amazonaws.com/freecodecamp/simonSound4.mp3"),
+    error: new Audio("https://www.soundjay.com/buttons/sounds/button-10.mp3")
+}
 
 /*-------------------------------- Variables --------------------------------*/
 let gameSequence = []
@@ -37,35 +37,25 @@ startBtn.addEventListener('click', startGame)
 restartBtn.addEventListener('click', restartGame)
 
 colorBtns.forEach(function (button) {
-
     button.addEventListener("click", handleUserClick)
 })
 
 /*-------------------------------- Functions --------------------------------*/
 function init() {
-
     timeouts.forEach(function (timeout) {
         clearTimeout(timeout)
-
     })
 
     timeouts = []
 
     gameSequence = []
-
     playerSequence = []
-
     level = 0
-
     gameStarted = false
-
     playerTurn = false
-    
+
     message.textContent = 'Press Start to Play'
-
 }
-
-
 
 function startGame() {
     if (gameStarted) {
@@ -76,13 +66,9 @@ function startGame() {
     nextRound()
 }
 
-
-
 function restartGame() {
     init()
 }
-
-
 
 function nextRound() {
     playerSequence = []
@@ -109,8 +95,6 @@ function nextRound() {
     playSequence()
 }
 
-
-
 function playSequence() {
     playerTurn = false
 
@@ -131,9 +115,14 @@ function playSequence() {
     timeouts.push(turnTimeout)
 }
 
-
-
 function lightUp(button) {
+    const color = button.id
+
+    if (gameSounds[color]) {
+        gameSounds[color].currentTime = 0
+        gameSounds[color].play()
+    }
+
     button.classList.add('active')
 
     const timeout = setTimeout(function () {
@@ -142,8 +131,6 @@ function lightUp(button) {
 
     timeouts.push(timeout)
 }
-
-
 
 function handleUserClick(event) {
     if (playerTurn === false) {
@@ -158,6 +145,9 @@ function handleUserClick(event) {
     const currentIndex = playerSequence.length - 1
 
     if (playerSequence[currentIndex] !== gameSequence[currentIndex]) {
+        gameSounds.error.currentTime = 0
+        gameSounds.error.play()
+
         message.textContent = "Game Over"
         gameStarted = false
         playerTurn = false
