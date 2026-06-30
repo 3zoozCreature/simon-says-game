@@ -6,7 +6,7 @@ const gameSounds = {
     red: new Audio("https://s3.amazonaws.com/freecodecamp/simonSound2.mp3"),
     blue: new Audio("https://s3.amazonaws.com/freecodecamp/simonSound3.mp3"),
     yellow: new Audio("https://s3.amazonaws.com/freecodecamp/simonSound4.mp3"),
-    error: new Audio("https://www.soundjay.com/buttons/sounds/button-10.mp3")
+    error: new Audio("./Users/abdul/code/ga/simon-says-game/assets")
 }
 
 /*-------------------------------- Variables --------------------------------*/

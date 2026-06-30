@@ -72,7 +72,7 @@ body {
     filter: brightness(180%);
 }
 
-#highScore {
+.highScore {
     display:flex;
     margin-left: auto;
     margin-right: 20px;
