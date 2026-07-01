@@ -23,6 +23,7 @@ body {
     flex-direction: column;
     align-items: center;
     background-color: gray;
+    font-family: 'Pixelify Sans', sans-serif;
 }
 
 #start-btn {
@@ -72,9 +73,14 @@ body {
     filter: brightness(180%);
 }
 
-.highScore {
+#high-score {
     display:flex;
+    margin-left: auto;
+    margin-right: 77px;
+}
+
+h3 {
+        display:flex;
     margin-left: auto;
     margin-right: 20px;
 }
-

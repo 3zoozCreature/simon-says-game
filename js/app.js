@@ -1,12 +1,16 @@
 /*-------------------------------- Constants --------------------------------*/
 const colorArr = ['red', 'blue', 'green', 'yellow']
 
+const highScore = document.querySelector("#high-score")
+
 const gameSounds = {
+
     green: new Audio("https://s3.amazonaws.com/freecodecamp/simonSound1.mp3"),
     red: new Audio("https://s3.amazonaws.com/freecodecamp/simonSound2.mp3"),
     blue: new Audio("https://s3.amazonaws.com/freecodecamp/simonSound3.mp3"),
     yellow: new Audio("https://s3.amazonaws.com/freecodecamp/simonSound4.mp3"),
-    error: new Audio("./Users/abdul/code/ga/simon-says-game/assets")
+    error: new Audio("../assets/Wrong-answer-sound-effect.mp3")
+
 }
 
 /*-------------------------------- Variables --------------------------------*/
@@ -21,6 +25,8 @@ let gameStarted = false
 let playerTurn = false
 
 let timeouts = []
+
+let highestScore = 0
 
 /*------------------------ Cached Element References ------------------------*/
 const startBtn = document.querySelector('#start-btn')
@@ -55,6 +61,8 @@ function init() {
     playerTurn = false
 
     message.textContent = 'Press Start to Play'
+
+    highScore.textContent = highestScore
 }
 
 function startGame() {
@@ -148,10 +156,21 @@ function handleUserClick(event) {
         gameSounds.error.currentTime = 0
         gameSounds.error.play()
 
-        message.textContent = "Game Over"
+        const score = level - 1
+
+        if (score > highestScore) {
+            highestScore = score
+            highScore.textContent = highestScore
+        }
+
+        message.textContent = "Game Over - Press Start to Play Again"
         gameStarted = false
         playerTurn = false
+        gameSequence = []
+        playerSequence = []
+        level = 0
         return
+        
     }
 
     if (playerSequence.length === gameSequence.length) {
