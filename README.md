@@ -13,6 +13,7 @@ Simon Says is a memory game where players must watch and remember an increasingl
 ### Play the Game
 
 Clone the repository and open `index.html` in your browser.
+Or use the [link](https://3zoozcreature.github.io/simon-says-game/)
 
 ### How to Play
 
