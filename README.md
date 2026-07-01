@@ -2,7 +2,7 @@
 
 *A browser-based memory game inspired by the classic Simon Says.*
 
-![Screenshot of my game](assets/Screenshot2026-07-01144956.png)
+![Screenshot of my game](assets/Screenshot2026-07-01214344.png)
 
 ## Overview
 
