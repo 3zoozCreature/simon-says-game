@@ -4,11 +4,13 @@ const colorArr = ['red', 'blue', 'green', 'yellow']
 const highScore = document.querySelector("#high-score")
 
 const gameSounds = {
+
     green: new Audio("https://s3.amazonaws.com/freecodecamp/simonSound1.mp3"),
     red: new Audio("https://s3.amazonaws.com/freecodecamp/simonSound2.mp3"),
     blue: new Audio("https://s3.amazonaws.com/freecodecamp/simonSound3.mp3"),
     yellow: new Audio("https://s3.amazonaws.com/freecodecamp/simonSound4.mp3"),
     error: new Audio("../assets/Wrong-answer-sound-effect.mp3")
+
 }
 
 /*-------------------------------- Variables --------------------------------*/
@@ -35,6 +37,12 @@ const colorBtns = document.querySelectorAll('.color-btn')
 
 const message = document.querySelector('#message')
 
+const gameOverModal = document.querySelector("#game-over-modal")
+
+const levelReached = document.querySelector("#level-reached")
+
+const playAgainBtn = document.querySelector("#play-again-btn")
+
 /*----------------------------- Event Listeners -----------------------------*/
 startBtn.addEventListener('click', startGame)
 
@@ -43,6 +51,8 @@ restartBtn.addEventListener('click', restartGame)
 colorBtns.forEach(function (button) {
     button.addEventListener("click", handleUserClick)
 })
+
+playAgainBtn.addEventListener("click", playAgain)
 
 /*-------------------------------- Functions --------------------------------*/
 function init() {
@@ -151,34 +161,29 @@ function handleUserClick(event) {
     const currentIndex = playerSequence.length - 1
 
     if (playerSequence[currentIndex] !== gameSequence[currentIndex]) {
-        gameSounds.error.currentTime = 0
-        gameSounds.error.play()
+    gameSounds.error.currentTime = 0
+    gameSounds.error.play()
 
-        const score = level - 1
+    const score = level - 1
 
-        if (score > highestScore) {
-            highestScore = score
-            highScore.textContent = highestScore
-        }
-
-        gameStarted = false
-        playerTurn = false
-        gameSequence = []
-        playerSequence = []
-        level = 0
-
-        const playAgain = confirm(
-            "Game Over!\n\nLevel Reached: " + score + "\n\nPlay Again?"
-        )
-
-        message.textContent = "Press Start to Play"
-
-        if (playAgain) {
-            startGame()
-        }
-
-        return
+    if (score > highestScore) {
+        highestScore = score
+        highScore.textContent = highestScore
     }
+
+    message.textContent = "Press Start to Play"
+
+    gameStarted = false
+    playerTurn = false
+
+    showGameOver()
+
+    gameSequence = []
+    playerSequence = []
+    level = 0
+
+    return
+}
 
     if (playerSequence.length === gameSequence.length) {
         playerTurn = false
@@ -190,6 +195,20 @@ function handleUserClick(event) {
 
         timeouts.push(timeout)
     }
+}
+
+function showGameOver() {
+    levelReached.textContent = level - 1
+    gameOverModal.classList.add("show")
+}
+
+function hideGameOver() {
+    gameOverModal.classList.remove("show")
+}
+
+function playAgain() {
+    hideGameOver()
+    init()
 }
 
 init()
