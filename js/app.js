@@ -4,13 +4,11 @@ const colorArr = ['red', 'blue', 'green', 'yellow']
 const highScore = document.querySelector("#high-score")
 
 const gameSounds = {
-
     green: new Audio("https://s3.amazonaws.com/freecodecamp/simonSound1.mp3"),
     red: new Audio("https://s3.amazonaws.com/freecodecamp/simonSound2.mp3"),
     blue: new Audio("https://s3.amazonaws.com/freecodecamp/simonSound3.mp3"),
     yellow: new Audio("https://s3.amazonaws.com/freecodecamp/simonSound4.mp3"),
     error: new Audio("../assets/Wrong-answer-sound-effect.mp3")
-
 }
 
 /*-------------------------------- Variables --------------------------------*/
@@ -163,14 +161,23 @@ function handleUserClick(event) {
             highScore.textContent = highestScore
         }
 
-        message.textContent = "Game Over - Press Start to Play Again"
         gameStarted = false
         playerTurn = false
         gameSequence = []
         playerSequence = []
         level = 0
+
+        const playAgain = confirm(
+            "Game Over!\n\nLevel Reached: " + score + "\n\nPlay Again?"
+        )
+
+        message.textContent = "Press Start to Play"
+
+        if (playAgain) {
+            startGame()
+        }
+
         return
-        
     }
 
     if (playerSequence.length === gameSequence.length) {
