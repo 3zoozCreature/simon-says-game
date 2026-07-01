@@ -1,136 +1,178 @@
-.color-btn {
-    width: 150px;
-    height: 150px;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: box-shadow 0.2s ease, transform 0.1s ease;
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-.game-board {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    width: 320px;
-    margin: 20px 0;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: gray;
-    font-family: 'Pixelify Sans', sans-serif;
-}
-
-#start-btn {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 15px;
-}
-
-#red {
-    border-top-left-radius: 75%;
-    border-bottom-right-radius: 20;
-    background-color: rgb(199, 21, 21);
-}
-
-#green {
-    border-bottom-left-radius: 75%;
-    background-color: rgb(17, 162, 17);
-}
-
-#blue {
-    border-top-right-radius: 75%;
-    background-color: rgb(28, 28, 164);
-}
-
-#yellow {
-    border-bottom-right-radius: 75%;
-    background-color: rgb(202, 202, 28);
-}
-
-#restart-btn {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 15px;
-    margin-top: 5px;
-}
-
-.color-btn:active {
-  box-shadow: 0 0 15px 5px #3498db;
-  transform: scale(0.98);
-  filter: brightness(180%);
-}
-
-.active {
-    transform: scale(0.95);
-    filter: brightness(180%);
-}
-
-#high-score {
+body{
+    min-height:100vh;
     display:flex;
-    margin-left: auto;
-    margin-right: 77px;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#0f172a,#1e293b,#111827);
+    color:white;
+    font-family:'Pixelify Sans',sans-serif;
 }
 
-h3 {
-        display:flex;
-    margin-left: auto;
-    margin-right: 20px;
+h1{
+    font-size:3.5rem;
+    letter-spacing:3px;
+    margin-bottom:10px;
+    text-shadow:0 0 20px rgba(255,255,255,.3);
 }
 
-#game-over-modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+h2{
+    margin-bottom:30px;
+    font-weight:400;
 }
 
-#game-over-modal.show {
-    display: flex;
+h3{
+    position:absolute;
+    top:25px;
+    right:35px;
+    font-size:1rem;
+    color:#d1d5db;
 }
 
-.modal-content {
-    background-color: white;
-    padding: 30px;
-    border-radius: 15px;
-    text-align: center;
-    min-width: 300px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+#high-score{
+    position:absolute;
+    top:48px;
+    right:35px;
+    font-size:2rem;
+    color:#fff;
 }
 
-.modal-content h2 {
-    margin-top: 0;
-    margin-bottom: 15px;
+.game-board{
+    width:360px;
+    height:360px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    grid-template-rows:repeat(2,1fr);
+    gap:15px;
+    padding:15px;
+    background:#111827;
+    border-radius:50%;
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.5),
+    inset 0 0 30px rgba(255,255,255,.05);
+    margin-bottom:30px;
 }
 
-.modal-content p {
-    font-size: 20px;
-    margin-bottom: 20px;
+.color-btn{
+    border:none;
+    cursor:pointer;
+    transition:.15s;
+    width:100%;
+    height:100%;
 }
 
-#play-again-btn {
-    padding: 10px 20px;
-    font-size: 16px;
-    font-family: 'Pixelify Sans', sans-serif;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
+#red{
+    background:#ef4444;
+    border-radius:100% 15px 15px 15px;
 }
 
-#play-again-btn:hover {
-    transform: scale(1.05);
+#blue{
+    background:#3b82f6;
+    border-radius:15px 100% 15px 15px;
 }
 
-#play-again-btn:active {
-    transform: scale(0.95);
+#green{
+    background:#22c55e;
+    border-radius:15px 15px 15px 100%;
+}
+
+#yellow{
+    background:#facc15;
+    border-radius:15px 15px 100% 15px;
+}
+
+.color-btn:hover{
+    filter:brightness(1.15);
+}
+
+.color-btn:active{
+    transform:scale(.95);
+}
+
+.active{
+    transform:scale(.95);
+    filter:brightness(180%);
+    box-shadow:0 0 30px white;
+}
+
+#start-btn,
+#restart-btn,
+#play-again-btn{
+    margin-top:10px;
+    padding:14px 28px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-family:'Pixelify Sans',sans-serif;
+    font-size:18px;
+    background:#2563eb;
+    color:white;
+    transition:.2s;
+    box-shadow:0 8px 20px rgba(37,99,235,.3);
+}
+
+#restart-btn{
+    background:#475569;
+    box-shadow:0 8px 20px rgba(71,85,105,.3);
+}
+
+#start-btn:hover,
+#restart-btn:hover,
+#play-again-btn:hover{
+    transform:translateY(-3px);
+}
+
+#start-btn:active,
+#restart-btn:active,
+#play-again-btn:active{
+    transform:scale(.97);
+}
+
+#game-over-modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    backdrop-filter:blur(10px);
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+#game-over-modal.show{
+    display:flex;
+}
+
+.modal-content{
+    width:340px;
+    padding:40px;
+    border-radius:24px;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.15);
+    text-align:center;
+    box-shadow:0 20px 50px rgba(0,0,0,.4);
+}
+
+.modal-content h2{
+    font-size:2rem;
+    margin-bottom:20px;
+}
+
+.modal-content p{
+    font-size:1.3rem;
+    margin-bottom:30px;
+}
+
+#level-reached{
+    color:#22c55e;
+    font-size:2rem;
 }
